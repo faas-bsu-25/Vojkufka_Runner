@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://dmhn4782yjnxq"]
+
+[ext_resource type="SpriteFrames" uid="uid://ctvg00j8w2n1o" path="res://sprites/player_frames.tres" id="1_d8sh7"]
+[ext_resource type="Script" uid="uid://bql44uimvpcck" path="res://inf_player.gd" id="1_r7fsg"]
+[ext_resource type="PackedScene" uid="uid://kpiskyco4fka" path="res://sprites/ground.tscn" id="3_tcqou"]
+[ext_resource type="Script" uid="uid://hsl3cdi4oke8" path="res://ground_spawner.gd" id="4_6ixe0"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vvoha"]
+radius = 31.0
+height = 98.0
+
+[node name="InfiniteRunner" type="Node2D"]
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(551, 315)
+script = ExtResource("1_r7fsg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("CapsuleShape2D_vvoha")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
+position = Vector2(-13, -42)
+scale = Vector2(3, 3)
+sprite_frames = ExtResource("1_d8sh7")
+autoplay = "default"
+frame = 10
+frame_progress = 0.797727
+
+[node name="Ground" parent="." instance=ExtResource("3_tcqou")]
+position = Vector2(15, 18)
+
+[node name="GroundSpawner" type="Node2D" parent="."]
+position = Vector2(1142, 422)
+script = ExtResource("4_6ixe0")
+
+[node name="Timer" type="Timer" parent="GroundSpawner"]
+autostart = true
+
+[connection signal="timeout" from="GroundSpawner/Timer" to="GroundSpawner" method="_on_timer_timeout"]

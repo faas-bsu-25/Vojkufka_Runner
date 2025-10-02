@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://bb4yyhqo7v00x"]
+
+[ext_resource type="Script" uid="uid://ce565vk1ky3o7" path="res://ground_move.gd" id="1_t7tip"]
+[ext_resource type="Texture2D" uid="uid://bik625jn4m1up" path="res://sprites/platforms.png" id="2_tv015"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t7tip"]
+size = Vector2(175, 53)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tv015"]
+atlas = ExtResource("2_tv015")
+region = Rect2(15.1121, 0, 33.1376, 9.85481)
+
+[node name="Ground" type="StaticBody2D"]
+script = ExtResource("1_t7tip")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_t7tip")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(5.27778, 5.27778)
+texture = SubResource("AtlasTexture_tv015")
